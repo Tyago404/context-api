@@ -26,7 +26,8 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        >
+        <h1 className="font-extrabold text-6xl text-center text-gray-100">CRUD MAKER</h1>
         {children}
       </body>
     </html>

@@ -1,12 +1,23 @@
+"use client"
+import { TodoModel } from "@/models/TodoModel";
 import clsx from "clsx";
 import Image from "next/image";
 
-export function CardTodo() {
+type CardTodoProps = {
+  todo: TodoModel;
+}
+
+
+export function CardTodo({todo}:CardTodoProps) {
+
+
   const commonClasses = "text-normal font-medium mx-2";
-  const buttonCommonClasses =
-    "px-4 py-3 cursor-pointer hover:scale-105 transition-all duration-200";
+  const buttonCommonClasses = "px-4 py-3 cursor-pointer hover:scale-105 transition-all duration-200";
+
+  if(!todo) return null 
+
   return (
-    <div className="flex flex-col justify-center items-center bg-(--bgSecondary) text-black p-6 rounded-xl">
+    <div className="flex flex-col justify-center items-center bg-(--bgSecondary) text-black p-6 rounded-xl w-100 h-90">
       <Image
         src="/images/tasked.png"
         width={300}
@@ -17,17 +28,17 @@ export function CardTodo() {
       <div className="flex flex-col justify-start w-full m-6 font-semibold text-xl ">
         <div className="flex">
           <h2>Title:</h2>
-          <p className={commonClasses}>Title1</p>
+          <p className={commonClasses}>{todo.title}</p>
         </div>
 
         <div className="flex">
           <h2>Id:</h2>
-          <p className={commonClasses}>Id1</p>
+          <p className={commonClasses}>{todo.id}</p>
         </div>
 
         <div className="flex">
           <h2>Completed:</h2>
-          <p className={commonClasses}>TRUE</p>
+          <p className={commonClasses}>{todo.completed}</p>
         </div>
       </div>
 

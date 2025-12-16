@@ -1,10 +1,13 @@
-import { CardTodo } from "@/components/CardTodo";
+
 import { MainContainer } from "@/components/MainContainer";
+import { TodoList } from "@/contexts/TodoContext/TodoList";
 
 export default function Home() {
   return (
    <MainContainer>
-      <CardTodo />
+    <TodoList />
    </MainContainer>
+
+ 
   );
 }

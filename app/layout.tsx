@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { TodoContextProvider } from "@/contexts/TodoContext/TodoContext";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,9 +28,11 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-        <h1 className="font-extrabold text-6xl text-center text-gray-100">CRUD MAKER</h1>
-        {children}
+      >
+        <h1 className="font-extrabold text-6xl text-center text-gray-100">
+          CRUD MAKER
+        </h1>
+        <TodoContextProvider>{children}</TodoContextProvider>
       </body>
     </html>
   );

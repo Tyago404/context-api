@@ -2,13 +2,15 @@
 import { TodoModel } from "@/models/TodoModel";
 import clsx from "clsx";
 import Image from "next/image";
+import Link from "next/link";
 
 type CardTodoProps = {
-  todo: TodoModel;
+  todo: TodoModel | null;
+  id?:number;
 }
 
 
-export function CardTodo({todo}:CardTodoProps) {
+export function CardTodo({todo, id}:CardTodoProps) {
 
 
   const commonClasses = "text-normal font-medium mx-2";
@@ -43,11 +45,9 @@ export function CardTodo({todo}:CardTodoProps) {
       </div>
 
       <div className="flex gap-6 font-bold ">
-        <button
-          className={clsx("bg-green-300 rounded-xl", buttonCommonClasses)}
-        >
+        <Link href={`/todo/${id}`} className={clsx("bg-green-300 rounded-xl", buttonCommonClasses)}>
           SEE
-        </button>
+        </Link>
         <button
           className={clsx("bg-amber-300 rounded-xl", buttonCommonClasses)}
         >

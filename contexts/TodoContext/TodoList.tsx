@@ -1,5 +1,5 @@
 "use client";
-import { CardTodo } from "@/components/CardTodo";
+import { CardTodo } from "@/components/CardTodo/TodoActions";
 import { useTodo } from "./TodoContext";
 
 export function TodoList() {
@@ -9,7 +9,7 @@ export function TodoList() {
     <div className="grid grid-cols-2 gap-4">
       {todos.map((todo) => (
         <div key={todo.id}>
-          <CardTodo todo={todo} />
+          <CardTodo todo={todo} id={todo.id} />
         </div>
       ))}
     </div>

@@ -11,7 +11,7 @@ export const TodoContextProvider = ({
   const [todos, setTodos] = useState<TodoModel[]>([]);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
+    fetch("https://jsonplaceholder.typicode.com/todos?_limit=4")
       .then((res) => res.json())
       .then((data) => setTodos(data));
   }, []);

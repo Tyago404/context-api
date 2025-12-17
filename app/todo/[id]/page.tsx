@@ -1,7 +1,6 @@
 "use client";
-
-import { CardTodo } from "@/components/CardTodo/TodoActions";
 import { TodoView } from "@/components/CardTodo/TodoView";
+import { MainContainer } from "@/components/MainContainer";
 import { TodoModel } from "@/models/TodoModel";
 import { getTodos } from "@/utils/getTodos";
 import { useParams } from "next/navigation";
@@ -23,8 +22,8 @@ export default function TodoPage() {
   }, [id]);
 
   return (
-    <>
+    <MainContainer>
       <TodoView todo={todo} />
-    </>
+    </MainContainer>
   );
 }

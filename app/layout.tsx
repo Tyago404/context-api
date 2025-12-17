@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <h1 className="font-extrabold text-6xl text-center text-gray-100">
+        <h1 className="font-extrabold text-6xl text-center text-gray-100 m-6">
           CRUD MAKER
         </h1>
         <TodoContextProvider>{children}</TodoContextProvider>

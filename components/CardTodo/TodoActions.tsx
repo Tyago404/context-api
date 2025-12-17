@@ -40,7 +40,7 @@ export function CardTodo({todo, id}:CardTodoProps) {
 
         <div className="flex">
           <h2>Completed:</h2>
-          <p className={commonClasses}>{todo.completed}</p>
+          <p className={commonClasses}>{todo.completed ? "Completed" : "Pending"}</p>
         </div>
       </div>
 

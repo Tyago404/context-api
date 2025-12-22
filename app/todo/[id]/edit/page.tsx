@@ -1,12 +1,13 @@
 "use client";
-import { TodoView } from "@/components/CardTodo/TodoView";
+
+import { TodoEdit } from "@/components/CardTodo/TodoEdit";
 import { MainContainer } from "@/components/MainContainer";
 import { TodoModel } from "@/models/TodoModel";
-import { getTodosById } from "@/utils/getTodos";
+import { getTodosById, updateTodos } from "@/utils/getTodos";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function TodoPage() {
+export default function EditTodoPage() {
   const { id } = useParams<{ id: string }>();
   const [todo, setTodo] = useState<TodoModel | null>(null);
 
@@ -21,9 +22,16 @@ export default function TodoPage() {
     searchTodo();
   }, [id]);
 
+  async function handleUpdateTodo(updatedTodo: TodoModel) {
+     await updateTodos(updatedTodo);
+    // setTodo(updatedTodo);
+  }
+
+  if (!todo) return;
+
   return (
     <MainContainer>
-      <TodoView todo={todo} />
+      <TodoEdit onSubmit={handleUpdateTodo} todo={todo} />
     </MainContainer>
   );
 }

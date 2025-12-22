@@ -48,11 +48,9 @@ export function CardTodo({todo, id}:CardTodoProps) {
         <Link href={`/todo/${id}`} className={clsx("bg-green-300 rounded-xl", buttonCommonClasses)}>
           SEE
         </Link>
-        <button
-          className={clsx("bg-amber-300 rounded-xl", buttonCommonClasses)}
-        >
+       <Link href={`/todo/${id}/edit`} className={clsx("bg-amber-300 rounded-xl", buttonCommonClasses)}>
           EDIT
-        </button>
+        </Link>
         <button className={clsx("bg-red-300 rounded-xl", buttonCommonClasses)}>
           DEL
         </button>

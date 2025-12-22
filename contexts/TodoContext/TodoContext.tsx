@@ -15,7 +15,7 @@ export const TodoContextProvider = ({
       .then((res) => res.json())
       .then((data) => setTodos(data));
   }, []);
-
+ 
   return (
     <TodoContext.Provider value={{ todos }}>{children}</TodoContext.Provider>
   );

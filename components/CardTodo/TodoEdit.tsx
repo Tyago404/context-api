@@ -19,7 +19,7 @@ export function TodoEdit({ todo, onSubmit }: TodoEditType) {
     setTodoState(todo);
   }, [todo]);
 
-  const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
+  const handleSubmit =  (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(todoState);
   };
@@ -76,7 +76,7 @@ export function TodoEdit({ todo, onSubmit }: TodoEditType) {
               checked={todoState.completed}
               id="completed"
               onChange={(e) =>
-                setTodoState(prev => ({
+                setTodoState((prev) => ({
                   ...prev,
                   completed: e.target.checked,
                 }))
@@ -85,16 +85,15 @@ export function TodoEdit({ todo, onSubmit }: TodoEditType) {
               className={fieldsCommonClasses}
             />
           </label>
-          
-            <button
+
+          <button
             type="submit"
-              className={clsx(
-                "bg-amber-300 rounded-xl px-4 py-3 cursor-pointer hover:scale-105 transition-all duration-200"
-              )}
-            >
-              EDIT
-            </button>
-          
+            className={clsx(
+              "bg-amber-300 rounded-xl px-4 py-3 cursor-pointer hover:scale-105 transition-all duration-200"
+            )}
+          >
+            EDIT
+          </button>
         </form>
 
         <Link

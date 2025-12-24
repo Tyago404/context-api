@@ -23,14 +23,19 @@ export default function EditTodoPage() {
   }, [id]);
 
   async function handleUpdateTodo(updatedTodo: TodoModel) {
-     await updateTodos(updatedTodo);
-    // setTodo(updatedTodo);
+    const updatedFromApi = await updateTodos(updatedTodo);
+    setTodo(updatedFromApi);
+   
+    console.log("final todo below")
+    console.log(todo)
   }
 
   if (!todo) return;
 
   return (
     <MainContainer>
+      <h1>{todo.title}</h1>
+      <h1>{todo.completed ? 'true' : 'false'}</h1>
       <TodoEdit onSubmit={handleUpdateTodo} todo={todo} />
     </MainContainer>
   );

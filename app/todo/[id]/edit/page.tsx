@@ -2,41 +2,38 @@
 
 import { TodoEdit } from "@/components/CardTodo/TodoEdit";
 import { MainContainer } from "@/components/MainContainer";
+import { useTodo } from "@/contexts/TodoContext/TodoContext";
 import { TodoModel } from "@/models/TodoModel";
-import { getTodosById, updateTodos } from "@/utils/getTodos";
+import { updateTodos } from "@/utils/getTodos";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
 
 export default function EditTodoPage() {
   const { id } = useParams<{ id: string }>();
-  const [todo, setTodo] = useState<TodoModel | null>(null);
+  const { todos, setTodos } = useTodo();
 
-  useEffect(() => {
-    async function searchTodo() {
-      if (!id) return;
-
-      const todos = await getTodosById(Number(id));
-      setTodo(todos);
-    }
-
-    searchTodo();
-  }, [id]);
-
-  async function handleUpdateTodo(updatedTodo: TodoModel) {
-    const updatedFromApi = await updateTodos(updatedTodo);
-    setTodo(updatedFromApi);
-   
-    console.log("final todo below")
-    console.log(todo)
+  const todo = todos.find((todo) => todo.id === Number(id));
+  if (!todo) {
+    return <MainContainer>Todo não encontrado</MainContainer>;
   }
+  //adicionar errorpage
 
-  if (!todo) return;
+  async function updateTodoState(updatedTodo: TodoModel) {
+;
+    const newTodo = await updateTodos(updatedTodo);
+
+     setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === newTodo.id ? newTodo : todo
+      )
+    );
+    
+    console.log("todo updated");
+    console.log(todos);
+  }
 
   return (
     <MainContainer>
-      <h1>{todo.title}</h1>
-      <h1>{todo.completed ? 'true' : 'false'}</h1>
-      <TodoEdit onSubmit={handleUpdateTodo} todo={todo} />
+      <TodoEdit todo={todo} onSubmit={updateTodoState} />
     </MainContainer>
   );
 }

@@ -21,9 +21,7 @@ export async function updateTodos(updatedTodo: TodoModel) {
       completed: completed,
     }),
   })
-  const jsonData = await res.json()
-  console.log('method put executed!')
-  console.log(jsonData)
-  return jsonData
-
+  const data = await res.json()
+  return data
+  
 }

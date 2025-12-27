@@ -1,6 +1,7 @@
 "use client";
 import { TodoView } from "@/components/CardTodo/TodoView";
 import { MainContainer } from "@/components/MainContainer";
+import { useTodo } from "@/contexts/TodoContext/TodoContext";
 import { TodoModel } from "@/models/TodoModel";
 import { getTodosById } from "@/utils/getTodos";
 import { useParams } from "next/navigation";
@@ -8,18 +9,10 @@ import { useEffect, useState } from "react";
 
 export default function TodoPage() {
   const { id } = useParams<{ id: string }>();
-  const [todo, setTodo] = useState<TodoModel | null>(null);
 
-  useEffect(() => {
-    async function searchTodo() {
-      if (!id) return;
-
-      const todos = await getTodosById(Number(id));
-      setTodo(todos);
-    }
-
-    searchTodo();
-  }, [id]);
+  const { todos } = useTodo();
+  const todo = todos.find((todo) => todo.id === Number(id));
+  if (!todo) return;
 
   return (
     <MainContainer>

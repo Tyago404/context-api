@@ -19,7 +19,7 @@ export function TodoEdit({ todo, onSubmit }: TodoEditType) {
     setTodoState(todo);
   }, [todo]);
 
-  const handleSubmit =  (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(todoState);
   };

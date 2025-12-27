@@ -21,9 +21,7 @@ export async function updateTodos(updatedTodo: TodoModel) {
       completed: completed,
     }),
   })
-  .then(res => res.json())
-  .then(data =>{
-   
-  })
-
+  const data = await res.json()
+  return data
+  
 }

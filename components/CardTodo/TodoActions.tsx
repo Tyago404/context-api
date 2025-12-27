@@ -6,7 +6,7 @@ import Link from "next/link";
 
 type CardTodoProps = {
   todo: TodoModel | null;
-  id?:number;
+  id:number;
 }
 
 

@@ -5,10 +5,11 @@ import { MainContainer } from "@/components/MainContainer";
 import { useTodo } from "@/contexts/TodoContext/TodoContext";
 import { TodoModel } from "@/models/TodoModel";
 import { updateTodos } from "@/utils/getTodos";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 export default function EditTodoPage() {
   const { id } = useParams<{ id: string }>();
+  const router = useRouter();
   const { todos, setTodos } = useTodo();
 
   const todo = todos.find((todo) => todo.id === Number(id));
@@ -18,17 +19,13 @@ export default function EditTodoPage() {
   //adicionar errorpage
 
   async function updateTodoState(updatedTodo: TodoModel) {
-;
     const newTodo = await updateTodos(updatedTodo);
 
-     setTodos((prev) =>
-      prev.map((todo) =>
-        todo.id === newTodo.id ? newTodo : todo
-      )
+    setTodos((prev) =>
+      prev.map((todo) => (todo.id === newTodo.id ? newTodo : todo))
     );
-    
-    console.log("todo updated");
-    console.log(todos);
+
+    router.push("/");
   }
 
   return (

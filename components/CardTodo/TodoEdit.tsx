@@ -1,9 +1,9 @@
 import { TodoModel } from "@/models/TodoModel";
-import { updateTodos } from "@/utils/getTodos";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 type TodoEditType = {
   todo: TodoModel | null;
@@ -19,9 +19,10 @@ export function TodoEdit({ todo, onSubmit }: TodoEditType) {
     setTodoState(todo);
   }, [todo]);
 
-  const handleSubmit =  (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(todoState);
+    toast("Crud edited!");
   };
 
   const fieldsCommonClasses =
@@ -102,6 +103,7 @@ export function TodoEdit({ todo, onSubmit }: TodoEditType) {
         >
           CANCEL
         </Link>
+        <ToastContainer />
       </div>
     </div>
   );

@@ -20,8 +20,7 @@ export async function updateTodos(updatedTodo: TodoModel) {
       title: title,
       completed: completed,
     }),
-  })
-  const jsonData = await res.json()
-  return jsonData
-
+  });
+  const jsonData = await res.json();
+  return jsonData;
 }

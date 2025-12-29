@@ -1,9 +1,10 @@
 import { TodoModel } from "@/models/TodoModel";
 import clsx from "clsx";
+import { Check, Pencil, PencilOff, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import {toast } from "react-toastify";
 
 type TodoEditType = {
   todo: TodoModel | null;
@@ -26,10 +27,11 @@ export function TodoEdit({ todo, onSubmit }: TodoEditType) {
   };
 
   const fieldsCommonClasses =
-    "bg-gray-300 rounded-2xl p-4  text-2xl w-full cursor-pointer border border-sm border-black/40";
+    "bg-gray-300 rounded-2xl p-4  text-2xl w-full cursor-pointer ";
 
   return (
     <div className="flex flex-col justify-center bg-(--bgSecondary) rounded-xl text-black shadow-2xl ">
+
       <div className="flex items-center p-6">
         <Image
           src="/images/edit.png"
@@ -51,9 +53,10 @@ export function TodoEdit({ todo, onSubmit }: TodoEditType) {
               type="text"
               disabled
               id="id"
-              value={todoState.id}
+              placeholder={String(todoState.id)}
               className={fieldsCommonClasses}
             />
+            <PencilOff />
           </label>
 
           <label htmlFor="title" className="flex items-center m-4 gap-2">
@@ -68,10 +71,10 @@ export function TodoEdit({ todo, onSubmit }: TodoEditType) {
               placeholder={todoState.title}
               className={fieldsCommonClasses}
             />
+            <Pencil />
           </label>
-
           <label htmlFor="completed" className="flex items-center m-4 gap-2">
-            COMPLETED:
+            Completed:
             <input
               type="checkbox"
               checked={todoState.completed}
@@ -82,9 +85,21 @@ export function TodoEdit({ todo, onSubmit }: TodoEditType) {
                   completed: e.target.checked,
                 }))
               }
-              placeholder={todo.completed ? "Completed" : "Pending"}
-              className={fieldsCommonClasses}
+              className="hidden peer"
             />
+            <div
+              className={clsx(
+                "flex justify-center items-center",
+                "w-60 h-10 border-6 cursor-pointer hover:scale-103",
+                "rounded-full",
+                todoState.completed === true
+                  ? "border-green-400 bg-green-200"
+                  : "border-red-400 bg-red-200"
+              )}
+            >
+              {todoState.completed === true ? <Check /> : <X />}
+            </div>
+            <Pencil />
           </label>
 
           <button
@@ -96,15 +111,15 @@ export function TodoEdit({ todo, onSubmit }: TodoEditType) {
             EDIT
           </button>
         </form>
-
-        <Link
-          href={"/"}
-          className="bg-red-500  p-4 rounded-xl  cursor-pointer hover:scale-105 transition-all duration-200"
-        >
-          CANCEL
-        </Link>
-        <ToastContainer />
       </div>
+        <Link
+        href={"/"}
+        className="bg-gray-300 rounded-2xl text-red-900 flex items-center justify-center"
+      >
+        <X size={30} />
+        <h1 className="font-semibold text-xl p-2">Cancel / Return</h1>
+        <X size={30} />
+      </Link>
     </div>
   );
 }

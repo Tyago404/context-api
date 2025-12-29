@@ -4,7 +4,7 @@ import { TodoEdit } from "@/components/CardTodo/TodoEdit";
 import { MainContainer } from "@/components/MainContainer";
 import { useTodo } from "@/contexts/TodoContext/TodoContext";
 import { TodoModel } from "@/models/TodoModel";
-import { updateTodos } from "@/utils/getTodos";
+import { updateTodos } from "@/utils/todoActions";
 import { useParams, useRouter } from "next/navigation";
 
 export default function EditTodoPage() {
@@ -24,7 +24,6 @@ export default function EditTodoPage() {
     setTodos((prev) =>
       prev.map((todo) => (todo.id === newTodo.id ? newTodo : todo))
     );
-
     router.push("/");
   }
 

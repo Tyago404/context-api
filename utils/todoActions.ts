@@ -24,3 +24,12 @@ export async function updateTodos(updatedTodo: TodoModel) {
   const jsonData = await res.json();
   return jsonData;
 }
+
+export async function deleteTodo(id: number) {
+  console.log("executed");
+  const res = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+    method: "DELETE",
+  });
+  const data = await res.json();
+  console.log(data);
+}

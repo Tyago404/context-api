@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { TodoContextProvider } from "@/contexts/TodoContext/TodoContext";
-
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +33,12 @@ export default function RootLayout({
           CRUD MAKER
         </h1>
         <TodoContextProvider>{children}</TodoContextProvider>
+        <ToastContainer
+          autoClose={2000}
+          pauseOnHover={false}
+          closeOnClick={true}
+          stacked={true}
+        />
       </body>
     </html>
   );

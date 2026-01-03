@@ -13,20 +13,20 @@ export default function EditTodoPage() {
   const { todos, setTodos } = useTodo();
 
   const todo = todos.find((todo) => todo.id === Number(id));
+
   if (!todo) {
     return <MainContainer>Todo não encontrado</MainContainer>;
   }
-  //adicionar errorpage
 
   async function updateTodoState(updatedTodo: TodoModel) {
-    const newTodo = await updateTodos(updatedTodo);
+    const apiResponse = await updateTodos(updatedTodo);
 
     setTodos((prev) =>
-      prev.map((todo) => (todo.id === newTodo.id ? newTodo : todo))
+      prev.map((todo) => (todo.id === apiResponse.id ? apiResponse : todo))
     );
+
     router.push("/");
   }
-
   return (
     <MainContainer>
       <TodoEdit todo={todo} onSubmit={updateTodoState} />

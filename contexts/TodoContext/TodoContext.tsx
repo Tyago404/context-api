@@ -2,6 +2,7 @@
 import { TodoModel } from "@/models/TodoModel";
 import { useContext, useEffect, useState } from "react";
 import { TodoContext } from ".";
+import { handleAddTodo } from "@/utils/todoActions";
 
 export const TodoContextProvider = ({
   children,
@@ -11,13 +12,18 @@ export const TodoContextProvider = ({
   const [todos, setTodos] = useState<TodoModel[]>([]);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos?_limit=4")
+    fetch("https://jsonplaceholder.typicode.com/todos?_limit=2")
       .then((res) => res.json())
       .then((data) => setTodos(data));
   }, []);
 
+  async function addTodo(todo: Omit<TodoModel, "id">) {
+    const createdTodo = await handleAddTodo(todo);
+    setTodos((prev) => [...prev, createdTodo]);
+  }
+
   return (
-    <TodoContext.Provider value={{ todos, setTodos }}>
+    <TodoContext.Provider value={{ todos, setTodos, addTodo }}>
       {children}
     </TodoContext.Provider>
   );

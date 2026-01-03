@@ -1,7 +1,7 @@
 import { useTodo } from "@/contexts/TodoContext/TodoContext";
-import { ToastContainer, toast } from "react-toastify";
 import { deleteTodo } from "@/utils/todoActions";
 import clsx from "clsx";
+import { toast } from "react-toastify";
 
 type DeleteButtonProps = {
   id: number;

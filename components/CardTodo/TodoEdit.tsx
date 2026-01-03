@@ -1,10 +1,12 @@
+"use client";
+
 import { TodoModel } from "@/models/TodoModel";
 import clsx from "clsx";
 import { Check, Pencil, PencilOff, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useEffect, useState } from "react";
-import {toast } from "react-toastify";
+import { FormEvent, useState } from "react";
+import { toast } from "react-toastify";
 
 type TodoEditType = {
   todo: TodoModel | null;
@@ -12,18 +14,14 @@ type TodoEditType = {
 };
 
 export function TodoEdit({ todo, onSubmit }: TodoEditType) {
-  if (!todo) return;
-
+ 
+  if (!todo) return null;
   const [todoState, setTodoState] = useState<TodoModel>(todo);
-
-  useEffect(() => {
-    setTodoState(todo);
-  }, [todo]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(todoState);
-    toast("Crud edited!");
+    toast("Todo edited!");
   };
 
   const fieldsCommonClasses =
@@ -31,7 +29,6 @@ export function TodoEdit({ todo, onSubmit }: TodoEditType) {
 
   return (
     <div className="flex flex-col justify-center bg-(--bgSecondary) rounded-xl text-black shadow-2xl ">
-
       <div className="flex items-center p-6">
         <Image
           src="/images/edit.png"
@@ -66,7 +63,10 @@ export function TodoEdit({ todo, onSubmit }: TodoEditType) {
               id="title"
               value={todoState.title}
               onChange={(e) =>
-                setTodoState((prev) => ({ ...prev, title: e.target.value }))
+                setTodoState((prev) => ({
+                  ...prev,
+                  title: e.target.value,
+                }))
               }
               placeholder={todoState.title}
               className={fieldsCommonClasses}
@@ -112,13 +112,11 @@ export function TodoEdit({ todo, onSubmit }: TodoEditType) {
           </button>
         </form>
       </div>
-        <Link
+      <Link
         href={"/"}
         className="bg-gray-300 rounded-2xl text-red-900 flex items-center justify-center"
       >
-        <X size={30} />
         <h1 className="font-semibold text-xl p-2">Cancel / Return</h1>
-        <X size={30} />
       </Link>
     </div>
   );

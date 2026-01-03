@@ -1,5 +1,6 @@
 import { TodoModel } from "@/models/TodoModel";
 import Image from "next/image";
+import Link from "next/link";
 
 type TodoView = {
   todo: TodoModel | null;
@@ -39,9 +40,17 @@ export function TodoView({ todo }: TodoView) {
 
         <div className={fieldsCommonClasses}>
           <h2>Completed:</h2>
-          <p className={commonClasses}>{todo.completed ? "Completed" : "Pending"}</p>
+          <p className={commonClasses}>
+            {todo.completed ? "Completed" : "Pending"}
+          </p>
         </div>
       </div>
+      <Link
+        href={"/"}
+        className="bg-gray-300 rounded-2xl text-red-900 flex items-center justify-center"
+      >
+        <h1 className="font-semibold text-xl p-2">Return</h1>
+      </Link>
     </div>
   );
 }

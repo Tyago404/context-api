@@ -1,6 +1,5 @@
 "use client";
 import { TodoModel } from "@/models/TodoModel";
-import { deleteTodo } from "@/utils/todoActions";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -64,7 +63,7 @@ export function CardTodo({ todo, id }: CardTodoProps) {
         >
           EDIT
         </Link>
-       
+
         <DeleteButton id={id} />
       </div>
     </div>

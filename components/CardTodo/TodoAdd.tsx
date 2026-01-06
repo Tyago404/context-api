@@ -17,6 +17,7 @@ export function TodoAdd() {
   async function handleTitle(e: FormEvent) {
     e.preventDefault();
     addTodo({
+      id: Date.now(),
       title,
       completed: false,
     });

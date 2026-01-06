@@ -4,7 +4,7 @@ import { createContext } from "react";
 type TodoContextType = {
   todos: TodoModel[];
   setTodos: React.Dispatch<React.SetStateAction<TodoModel[]>>;
-  addTodo: (todo: Omit<TodoModel, "id">) => Promise<void>;
+  addTodo: (todo:TodoModel) => Promise<void>;
 };
 
 export const TodoContext = createContext<TodoContextType | null>(null);

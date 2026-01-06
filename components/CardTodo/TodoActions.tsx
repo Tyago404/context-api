@@ -13,12 +13,12 @@ type CardTodoProps = {
 export function CardTodo({ todo, id }: CardTodoProps) {
   const commonClasses = "text-normal font-medium mx-2";
   const buttonCommonClasses =
-    "px-4 py-3 w-25 text-center cursor-pointer hover:scale-105 transition-all duration-200";
+    "px-4 py-3 w-25 text-center cursor-pointer hover:scale-105 transition-all max-w-[100px] duration-200";
 
   if (!todo) return null;
 
   return (
-    <div className="flex flex-col justify-center items-center bg-(--bgSecondary) text-black p-6 rounded-xl w-100 h-90">
+    <div className="flex flex-col justify-center items-center bg-(--bgSecondary) text-black p-6 rounded-xl h-90">
       <Image
         src="/images/tasked.png"
         width={300}

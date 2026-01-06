@@ -10,7 +10,7 @@ export async function getTodosById(id: number | null) {
   }
 }
 
-export async function handleAddTodo(todo: Omit<TodoModel, "id">) {
+export async function handleAddTodo(todo: TodoModel) {
   try {
     const res = await fetch("https://jsonplaceholder.typicode.com/todos", {
       method: "POST",

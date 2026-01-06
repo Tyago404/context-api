@@ -17,9 +17,12 @@ export const TodoContextProvider = ({
       .then((data) => setTodos(data));
   }, []);
 
-  async function addTodo(todo: Omit<TodoModel, "id">) {
+  async function addTodo(todo: TodoModel) {
     const createdTodo = await handleAddTodo(todo);
-    setTodos((prev) => [...prev, createdTodo]);
+    const todoWithId = {
+      ...createdTodo, id: todo.id
+    }
+    setTodos((prev) => [...prev, todoWithId]);
   }
 
   return (

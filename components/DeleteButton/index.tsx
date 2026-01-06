@@ -22,8 +22,7 @@ export function DeleteButton({ id }: DeleteButtonProps) {
         onClick={handleDelete}
         className={clsx(
           "bg-red-300 rounded-xl",
-          "px-4 py-3 w-25",
-          "text-center cursor-pointer hover:scale-105 transition-all duration-200"
+          "px-4 py-3 w-25 text-center cursor-pointer hover:scale-105 transition-all max-w-[100px] duration-200"
         )}
       >
         DEL

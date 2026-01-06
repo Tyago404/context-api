@@ -14,7 +14,6 @@ type TodoEditType = {
 };
 
 export function TodoEdit({ todo, onSubmit }: TodoEditType) {
- 
   if (!todo) return null;
   const [todoState, setTodoState] = useState<TodoModel>(todo);
 
